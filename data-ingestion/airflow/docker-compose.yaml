@@ -78,7 +78,7 @@ x-airflow-common:
     PG_DATABASE: "${PG_DATABASE}"
 
   volumes:
-    - ./dags_local:/opt/airflow/dags
+    - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
     - ~/.google/credentials/:/.google/credentials:ro

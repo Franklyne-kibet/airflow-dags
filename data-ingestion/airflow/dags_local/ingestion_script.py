@@ -14,11 +14,11 @@ def ingest_callable(user, password, host, port, db, table_name, csv_file):
 
     t_start = time()
 
-    df_iter = pd.read_csv(csv_file, iterator=True , chunksize=100000)
+    df_iter = pd.read_csv(csv_file, iterator=True ,chunksize=100000,on_bad_lines='warn',  low_memory=False)
     df = next(df_iter)
 
-    df['tpep_pickup_datetime'] = pd.to_datetime['tpep_pickup_datetime']
-    df['tpep_dropoff_datetime'] = pd.to_datetime['tpep_dropoff_datetime']
+    df['tpep_pickup_datetime'] = pd.to_datetime(df['tpep_pickup_datetime'])
+    df['tpep_dropoff_datetime'] = pd.to_datetime(df['tpep_dropoff_datetime'])
 
     df.head(n=0).to_sql(name=table_name, con=engine, if_exists='replace')
     df.to_sql(name=table_name, con=engine, if_exists='append')
@@ -32,8 +32,8 @@ def ingest_callable(user, password, host, port, db, table_name, csv_file):
         t_start = time()
         df = next(df_iter)
 
-        df['tpep_pickup_datetime'] = pd.to_datetime['tpep_pickup_datetime']
-        df['tpep_dropoff_datetime'] = pd.to_datetime['tpep_dropoff_datetime']
+        df['tpep_pickup_datetime'] = pd.to_datetime(df['tpep_pickup_datetime'])
+        df['tpep_dropoff_datetime'] = pd.to_datetime(df['tpep_dropoff_datetime'])
 
         df.to_sql(name=table_name, con=engine, if_exists='append')
 
