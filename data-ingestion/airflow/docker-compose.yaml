@@ -68,7 +68,7 @@ x-airflow-common:
 
     # TODO
     GCP_PROJECT_ID: 'ny-rides-franklyne'
-    GCP_GCS_BUCKET: 'dtc_data_lake_ny-rides-franklyne'
+    GCP_GCS_BUCKET: 'prefect-data-zoomcamp'
 
     #logins
     PG_HOST: "${PG_HOST}"
@@ -78,7 +78,7 @@ x-airflow-common:
     PG_DATABASE: "${PG_DATABASE}"
 
   volumes:
-    - ./dags:/opt/airflow/dags
+    - ./dags_hw:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
     - ~/.google/credentials/:/.google/credentials:ro
